@@ -35,7 +35,7 @@
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
-          <!--  <scope>runtime</scope> -->
+          <!--  <scope>runtime</scope>           убрал для работы консоли H2 -->
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
