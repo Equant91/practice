@@ -44,8 +44,8 @@ COMMENT ON TABLE user IS 'Работник';
 
 
 CREATE TABLE IF NOT EXISTS doc(
-  id       INTEGER COMMENT 'Уникальный идентификатор' PRIMARY KEY AUTO_INCREMENT,
-  doc_code INTEGER COMMENT 'Код документа',
+  id       INTEGER NOT NULL COMMENT 'Уникальный идентификатор' PRIMARY KEY AUTO_INCREMENT,
+  doc_code INTEGER NOT NULL COMMENT 'Код документа',
   doc_name VARCHAR(30) COMMENT 'Название документа'
 );
 COMMENT ON TABLE doc IS 'Справочник документов';
@@ -53,8 +53,8 @@ COMMENT ON TABLE doc IS 'Справочник документов';
 
 CREATE TABLE IF NOT EXISTS country(
   id               INTEGER COMMENT 'Уникальный идентификатор' PRIMARY KEY AUTO_INCREMENT,
-  citizenship_code INTEGER COMMENT 'Номер страны',
-  citizenship_name VARCHAR(30) COMMENT 'Название страны',
+  citizenship_code INTEGER NOT NULL COMMENT 'Номер страны',
+  citizenship_name VARCHAR(30) NOT NULL COMMENT 'Название страны',
 );
 COMMENT ON TABLE doc IS 'Справочник стран';
 
