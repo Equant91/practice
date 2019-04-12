@@ -11,7 +11,6 @@ CREATE TABLE IF NOT EXISTS organization(
 );
 COMMENT ON TABLE organization IS 'Организация';
 
-
 CREATE TABLE IF NOT EXISTS office(
   id        INTEGER NOT NULL COMMENT 'Уникальный идентификатор' PRIMARY KEY AUTO_INCREMENT,
   version   INTEGER     NOT NULL COMMENT 'Служебное поле hibernate',
@@ -22,14 +21,12 @@ CREATE TABLE IF NOT EXISTS office(
 );
 COMMENT ON TABLE office IS 'Офис';
 
-
 CREATE TABLE IF NOT EXISTS organization_office(
   org_id    INTEGER NOT NULL COMMENT 'Уникальный идентификатор организации',
   office_id INTEGER NOT NULL COMMENT 'Уникальный идентификатор офиса',
   PRIMARY KEY (org_id, office_id)
 );
 COMMENT ON TABLE organization_office IS 'join-таблица для связи офиса и организации';
-
 
 CREATE TABLE IF NOT EXISTS user(
   id               INTEGER  NOT NULL COMMENT 'Уникальный идентификатор' PRIMARY KEY AUTO_INCREMENT,
@@ -48,7 +45,6 @@ CREATE TABLE IF NOT EXISTS user(
 );
 COMMENT ON TABLE user IS 'Работник';
 
-
 CREATE TABLE IF NOT EXISTS doc_(
   id       INTEGER NOT NULL COMMENT 'Уникальный идентификатор' PRIMARY KEY AUTO_INCREMENT,
   doc_code INTEGER NOT NULL COMMENT 'Код документа',
@@ -56,14 +52,12 @@ CREATE TABLE IF NOT EXISTS doc_(
 );
 COMMENT ON TABLE doc IS 'Справочник документов';
 
-
 CREATE TABLE IF NOT EXISTS country(
   id               INTEGER COMMENT 'Уникальный идентификатор' PRIMARY KEY AUTO_INCREMENT,
   citizenship_code INTEGER NOT NULL COMMENT 'Номер страны',
   citizenship_name VARCHAR(30) NOT NULL COMMENT 'Название страны',
 );
 COMMENT ON TABLE doc IS 'Справочник стран';
-
 
 
 CREATE INDEX IX_Organization_Office_Id ON organization_office(org_id);
