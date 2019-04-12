@@ -3,20 +3,24 @@ CREATE TABLE IF NOT EXISTS organization(
   version   INTEGER     NOT NULL COMMENT 'Служебное поле hibernate',
   name      VARCHAR(30) NOT NULL COMMENT 'Название организации',
   full_name VARCHAR(50) NOT NULL COMMENT 'Полное Название организации',
-  inn       INTEGER     NOT NULL COMMENT 'ИНН',
-  kpp       INTEGER     NOT NULL COMMENT 'КПП',
+  inn       VARCHAR(20)     NOT NULL COMMENT 'ИНН',
+  kpp       VARCHAR(20)     NOT NULL COMMENT 'КПП',
   address   VARCHAR(50) NOT NULL COMMENT 'Адрес',
   phone     INTEGER COMMENT 'Телефон',
   is_active BOOLEAN COMMENT 'Активность'
-
 );
 COMMENT ON TABLE organization IS 'Организация';
 
+CREATE TABLE IF NOT EXISTS organization_office(
+  org_id    INTEGER NOT NULL COMMENT 'Уникальный идентификатор организации',
+  office_id INTEGER NOT NULL COMMENT 'Уникальный идентификатор офиса',
+  PRIMARY KEY (org_id, office_id)
+);
+COMMENT ON TABLE organization_office IS 'join-таблица для связи офиса и организации';
 
 CREATE TABLE IF NOT EXISTS office(
   id        INTEGER NOT NULL COMMENT 'Уникальный идентификатор' PRIMARY KEY AUTO_INCREMENT,
   version   INTEGER     NOT NULL COMMENT 'Служебное поле hibernate',
-  org_id    INTEGER     NOT NULL COMMENT 'Уникальный идентификатор организации',
   name      VARCHAR(30)  COMMENT 'Название офиса',
   address   VARCHAR(50)  COMMENT 'Адрес офиса',
   phone     INTEGER COMMENT 'Телефон',
@@ -35,15 +39,15 @@ CREATE TABLE IF NOT EXISTS user(
   position         VARCHAR(30) NOT NULL COMMENT 'Должность',
   phone            INTEGER COMMENT 'Телефон',
   doc_id           INTEGER COMMENT 'Уникальный идентификатор документа',
-  doc_number       INTEGER COMMENT 'Номер документа',
+  doc_number       VARCHAR(20) COMMENT 'Номер документа',
   doc_date         DATE COMMENT 'Дата документа',
-  country_id INTEGER COMMENT 'Уникальный идентификатор страны гражданства',
+  country_id       INTEGER COMMENT 'Уникальный идентификатор страны гражданства',
   isIdentified     BOOLEAN COMMENT 'Индефицирован'
 );
 COMMENT ON TABLE user IS 'Работник';
 
 
-CREATE TABLE IF NOT EXISTS doc(
+CREATE TABLE IF NOT EXISTS doc_(
   id       INTEGER NOT NULL COMMENT 'Уникальный идентификатор' PRIMARY KEY AUTO_INCREMENT,
   doc_code INTEGER NOT NULL COMMENT 'Код документа',
   doc_name VARCHAR(30) NOT NULL COMMENT 'Название документа'
@@ -59,8 +63,12 @@ CREATE TABLE IF NOT EXISTS country(
 COMMENT ON TABLE doc IS 'Справочник стран';
 
 
-CREATE INDEX IX_Office_Id ON office (org_id);
-ALTER TABLE office ADD FOREIGN KEY (org_id) REFERENCES organization(id);
+
+CREATE INDEX IX_Organization_Office_Id ON organization_office(org_id);
+ALTER TABLE organization_office ADD FOREIGN KEY (org_id) REFERENCES organization(id);
+
+CREATE INDEX IX_Office_Organization_Id ON organization_office(office_id);
+ALTER TABLE organization_office ADD FOREIGN KEY (office_id) REFERENCES office(id);
 
 CREATE INDEX IX_User_OfficeId ON user (office_id);
 ALTER TABLE user ADD FOREIGN KEY (office_id) REFERENCES office(id);
