@@ -13,5 +13,5 @@ VALUES ( 1, 0,'Центральный','ул.Цюрупы', 567645  );
 INSERT INTO user(id, version, office_id, first_name, position, phone, doc_id, doc_number, doc_date, country_id)
 VALUES (1, 0, 1, 'Андрей', 'менеджер', 796412, 1, 123212, '2003-03-30', 1);
 
-INSERT INTO organization_office(org_id, office_id) VALUES
-( 1,1 );
+INSERT INTO organization_office(org_id, office_id)
+VALUES( 1,1 );

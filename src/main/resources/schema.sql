@@ -11,12 +11,6 @@ CREATE TABLE IF NOT EXISTS organization(
 );
 COMMENT ON TABLE organization IS 'Организация';
 
-CREATE TABLE IF NOT EXISTS organization_office(
-  org_id    INTEGER NOT NULL COMMENT 'Уникальный идентификатор организации',
-  office_id INTEGER NOT NULL COMMENT 'Уникальный идентификатор офиса',
-  PRIMARY KEY (org_id, office_id)
-);
-COMMENT ON TABLE organization_office IS 'join-таблица для связи офиса и организации';
 
 CREATE TABLE IF NOT EXISTS office(
   id        INTEGER NOT NULL COMMENT 'Уникальный идентификатор' PRIMARY KEY AUTO_INCREMENT,
@@ -27,6 +21,14 @@ CREATE TABLE IF NOT EXISTS office(
   is_active BOOLEAN COMMENT 'Активность'
 );
 COMMENT ON TABLE office IS 'Офис';
+
+
+CREATE TABLE IF NOT EXISTS organization_office(
+  org_id    INTEGER NOT NULL COMMENT 'Уникальный идентификатор организации',
+  office_id INTEGER NOT NULL COMMENT 'Уникальный идентификатор офиса',
+  PRIMARY KEY (org_id, office_id)
+);
+COMMENT ON TABLE organization_office IS 'join-таблица для связи офиса и организации';
 
 
 CREATE TABLE IF NOT EXISTS user(
