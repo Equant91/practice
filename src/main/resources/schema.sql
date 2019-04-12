@@ -45,7 +45,7 @@ CREATE TABLE IF NOT EXISTS user(
 );
 COMMENT ON TABLE user IS 'Работник';
 
-CREATE TABLE IF NOT EXISTS doc_(
+CREATE TABLE IF NOT EXISTS doc(
   id       INTEGER NOT NULL COMMENT 'Уникальный идентификатор' PRIMARY KEY AUTO_INCREMENT,
   doc_code INTEGER NOT NULL COMMENT 'Код документа',
   doc_name VARCHAR(30) NOT NULL COMMENT 'Название документа'
