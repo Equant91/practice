@@ -6,7 +6,7 @@ CREATE TABLE IF NOT EXISTS organization(
   inn       VARCHAR(20)     NOT NULL COMMENT 'ИНН',
   kpp       VARCHAR(20)     NOT NULL COMMENT 'КПП',
   address   VARCHAR(50) NOT NULL COMMENT 'Адрес',
-  phone     INTEGER COMMENT 'Телефон',
+  phone     VARCHAR(20) COMMENT 'Телефон',
   is_active BOOLEAN COMMENT 'Активность'
 );
 COMMENT ON TABLE organization IS 'Организация';
@@ -45,6 +45,7 @@ COMMENT ON TABLE user IS 'Работник';
 
 CREATE TABLE IF NOT EXISTS certain_doc(
   id              INTEGER NOT NULL COMMENT 'Уникальный идентификатор' PRIMARY KEY,
+  version         INTEGER     NOT NULL COMMENT 'Служебное поле hibernate',
   id_handbook_doc INTEGER NOT NULL COMMENT 'Уникальный идентификатор документа из справочника',
   doc_number      VARCHAR(20) COMMENT 'Номер документа',
   doc_date        DATE COMMENT 'Дата документа'
@@ -53,6 +54,7 @@ COMMENT ON TABLE certain_doc IS 'Документ';
 
 CREATE TABLE IF NOT EXISTS handbook_doc(
   id       INTEGER     NOT NULL COMMENT 'Уникальный идентификатор' PRIMARY KEY,
+  version          INTEGER     NOT NULL COMMENT 'Служебное поле hibernate',
   doc_code INTEGER     NOT NULL COMMENT 'Код документа',
   doc_name VARCHAR(30) NOT NULL COMMENT 'Название документа'
 );
@@ -60,6 +62,7 @@ COMMENT ON TABLE handbook_doc IS 'Справочник документов';
 
 CREATE TABLE IF NOT EXISTS country(
   id               INTEGER COMMENT 'Уникальный идентификатор' PRIMARY KEY,
+  version          INTEGER     NOT NULL COMMENT 'Служебное поле hibernate',
   citizenship_code INTEGER NOT NULL COMMENT 'Номер страны',
   citizenship_name VARCHAR(30) NOT NULL COMMENT 'Название страны',
 );
