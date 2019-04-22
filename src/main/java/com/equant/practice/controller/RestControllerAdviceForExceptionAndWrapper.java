@@ -21,7 +21,7 @@ public class RestControllerAdviceForExceptionAndWrapper implements ResponseBodyA
 
     @Override
     public boolean supports(MethodParameter methodParameter, Class aClass) {
-        return false;
+        return true;
     }
 
     @Override
