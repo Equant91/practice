@@ -26,7 +26,7 @@ public class OrganizationController {
     }
 
     @RequestMapping(path = "/list", method = RequestMethod.POST)
-    public Organization getByName(@RequestBody String name , @RequestBody String inn, @RequestBody boolean isActive){
+    public Organization getByName(@RequestBody String name, @RequestBody(required = false) String inn, @RequestBody (required = false)boolean isActive){
 
         return organizationService.findByName(name);
     }

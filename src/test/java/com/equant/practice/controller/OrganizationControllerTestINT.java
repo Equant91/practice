@@ -1,14 +1,14 @@
 package com.equant.practice.controller;
+
 import com.equant.practice.PracticeApplication;
 import com.equant.practice.model.Organization;
-import com.equant.practice.service.OrganizationService;
+
+
 import org.junit.Assert;
 import org.junit.Test;
-import org.junit.runner.Request;
+
 import org.junit.runner.RunWith;
-import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnitRunner;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
@@ -19,7 +19,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 
 import org.springframework.web.client.RestTemplate;
 
-
+import java.net.URI;
 
 
 @WebAppConfiguration
@@ -28,27 +28,28 @@ import org.springframework.web.client.RestTemplate;
 public class OrganizationControllerTestINT {
     RestTemplate restTemplate = new RestTemplate();
 
-    @Autowired
-    private OrganizationService organizationService;
+
 
     @Test
-    public void getById() throws Exception {
+    public void getById()  {
+
         ResponseEntity responseEntity = restTemplate.exchange("http://localhost:8888/organization/5", HttpMethod.GET,
                 null, new ParameterizedTypeReference<Organization>() {
                 });
         Organization organization = (Organization) responseEntity.getBody();
 
-        Assert.assertEquals(organization, organizationService.findByID(2));
+        Assert.assertEquals(organization, getOrganizationForTest());
     }
 
-    @Test
-    public void getByName() throws Exception {
 
-        ResponseEntity responseEntity = restTemplate.exchange("http://localhost:8888/organization/5", HttpMethod.POST,
-                null, new ParameterizedTypeReference<Organization>() {
-                });
-        Organization organization = (Organization) responseEntity.getBody();
 
-        Assert.assertEquals(organization, organizationService.findByID(2));
+
+    private Organization getOrganizationForTest(){
+        Organization organization = new Organization();
+        organization.setAddress("ул.Цюрупы");
+        organization.setFull_name("Центр социального обслудивания Гармония");
+        organization.setName("Гармония");
+        organization.setInn("3903243212");
+        return organization;
     }
 }
