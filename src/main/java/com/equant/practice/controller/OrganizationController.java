@@ -27,10 +27,11 @@ public class OrganizationController {
 
     @RequestMapping(path = "/list", method = RequestMethod.POST)
     public Organization getByName(@RequestBody String name , @RequestBody String inn, @RequestBody boolean isActive){
+     Organization organization = organizationService.findByName(name);
     if(organization == null){
             throw  new RuntimeException("Not found organization with this id");
         }
-        return organizationService.findByName(name);
+        return organization;
     }
 
     @RequestMapping(path = "/update", method = RequestMethod.POST)
