@@ -1,16 +1,13 @@
 package com.equant.practice.controller;
 
 import com.equant.practice.ResponseView;
-import com.equant.practice.model.Office;
 import com.equant.practice.model.Organization;
-import com.equant.practice.service.OrganizationService;
-import com.equant.practice.service.OrganizationServiceImpl;
+import com.equant.practice.service.organization.OrganizationService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(path = "/organization")
+@RequestMapping(path = "/api/organization")
 public class OrganizationController {
 
     @Autowired
@@ -26,8 +23,8 @@ public class OrganizationController {
     }
 
     @RequestMapping(path = "/list", method = RequestMethod.POST)
-    public Organization getByName(@RequestBody String name , @RequestBody String inn, @RequestBody boolean isActive){
-     Organization organization = organizationService.findByName(name);
+    public Organization getByName(@RequestBody Organization orgRequest){
+     Organization organization = organizationService.findByName(orgRequest.getName());
     if(organization == null){
             throw  new RuntimeException("Not found organization with this id");
         }

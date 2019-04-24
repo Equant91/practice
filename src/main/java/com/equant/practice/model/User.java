@@ -1,10 +1,12 @@
 package com.equant.practice.model;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @NoArgsConstructor
+@EqualsAndHashCode
 public class User {
 
     /*Уникальный идентификатор*/

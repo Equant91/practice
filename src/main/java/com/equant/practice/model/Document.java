@@ -1,11 +1,13 @@
 package com.equant.practice.model;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @NoArgsConstructor
-public class HandbookDocument {
+@EqualsAndHashCode
+public class Document {
 
     /*Уникальный идентификатор*/
     @Getter

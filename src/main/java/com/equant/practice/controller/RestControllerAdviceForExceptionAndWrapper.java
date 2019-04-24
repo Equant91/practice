@@ -2,6 +2,7 @@ package com.equant.practice.controller;
 
 import com.equant.practice.ResponseView;
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.springframework.core.MethodParameter;
 import org.springframework.http.MediaType;
 import org.springframework.http.server.ServerHttpRequest;
@@ -14,27 +15,28 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 public class RestControllerAdviceForExceptionAndWrapper implements ResponseBodyAdvice {
 
     @ExceptionHandler(Exception.class)
-    public String onExeption(Exception e){
+    public String onExeption(Exception e) {
         return e.getMessage();
     }
 
 
     @Override
     public boolean supports(MethodParameter methodParameter, Class aClass) {
-        return false;
+        return true;
     }
 
     @Override
     public Object beforeBodyWrite(Object o, MethodParameter methodParameter, MediaType mediaType, Class aClass, ServerHttpRequest serverHttpRequest, ServerHttpResponse serverHttpResponse) {
-        if(o instanceof ResponseView){
+        if (o instanceof ResponseView) {
             return o;
         }
         return new Wrapper(o);
     }
 
-@lombok.Data
+    @lombok.Data
+    @NoArgsConstructor
     @AllArgsConstructor
-    private class Wrapper{
+    private static class Wrapper {
         Object data;
 
     }

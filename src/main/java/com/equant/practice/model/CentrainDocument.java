@@ -1,5 +1,6 @@
 package com.equant.practice.model;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -7,6 +8,7 @@ import lombok.Setter;
 import java.util.Date;
 
 @NoArgsConstructor
+@EqualsAndHashCode
 public class CentrainDocument {
 
     @Getter
