@@ -8,5 +8,5 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 public class ResponseView {
-   private boolean success;
+   private Boolean success;
 }

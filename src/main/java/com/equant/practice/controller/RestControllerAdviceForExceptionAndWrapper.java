@@ -15,8 +15,9 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 public class RestControllerAdviceForExceptionAndWrapper implements ResponseBodyAdvice {
 
     @ExceptionHandler(Exception.class)
-    public String onExeption(Exception e) {
-        return e.getMessage();
+    public ResponseMsg onExeption(Exception e) {
+        ResponseMsg responseMsg = new ResponseMsg(e.getMessage());
+        return responseMsg;
     }
 
 
@@ -27,7 +28,7 @@ public class RestControllerAdviceForExceptionAndWrapper implements ResponseBodyA
 
     @Override
     public Object beforeBodyWrite(Object o, MethodParameter methodParameter, MediaType mediaType, Class aClass, ServerHttpRequest serverHttpRequest, ServerHttpResponse serverHttpResponse) {
-        if (o instanceof ResponseView) {
+        if (o instanceof ResponseView|| o instanceof ResponseMsg) {
             return o;
         }
         return new Wrapper(o);
@@ -40,4 +41,10 @@ public class RestControllerAdviceForExceptionAndWrapper implements ResponseBodyA
         Object data;
 
     }
-}
+    @lombok.Data
+    @NoArgsConstructor
+    @AllArgsConstructor
+    private class ResponseMsg {
+        private String error;
+    }
+    }

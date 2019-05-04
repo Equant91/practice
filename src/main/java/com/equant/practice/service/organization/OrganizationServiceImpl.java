@@ -1,46 +1,60 @@
 package com.equant.practice.service.organization;
 
 import com.equant.practice.ResponseView;
+import com.equant.practice.dao.organization.OrganizationDao;
+import com.equant.practice.dto.organization.OrgRequest;
+import com.equant.practice.dto.organization.OrganizationDTOForGet;
+import com.equant.practice.dto.organization.OrganizationDTOForList;
+import com.equant.practice.mapper.MapperFacade;
 import com.equant.practice.model.Organization;
 import lombok.NoArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.annotation.Validated;
+
+import java.util.List;
 
 @Service
 @NoArgsConstructor
 public class OrganizationServiceImpl implements OrganizationService {
-    ResponseView responseView;
 
-    private Organization getOrganizationForTest() {
-        Organization organization = new Organization();
-        organization.setAddress("ул.Цюрупы");
-        organization.setFull_name("Центр социального обслудивания Гармония");
-        organization.setName("Гармония");
-        organization.setInn("3903243212");
-        return organization;
+
+    OrganizationDao organizationDao;
+    MapperFacade mapperFacade;
+
+    @Autowired
+    public OrganizationServiceImpl(OrganizationDao organizationDao, MapperFacade mapperFacade) {
+        this.organizationDao = organizationDao;
+        this.mapperFacade = mapperFacade;
+    }
+
+
+    @Transactional
+    @Override
+    public OrganizationDTOForGet findByID(long id) {
+
+        return mapperFacade.map(organizationDao.findByID(id), OrganizationDTOForGet.class);
     }
 
     @Transactional
     @Override
-    public Organization findByID(long id) {
-        return getOrganizationForTest();
+    public List<OrganizationDTOForList> findByName(OrgRequest orgRequest) {
+
+        return mapperFacade.mapAsList(organizationDao.findByName(orgRequest), OrganizationDTOForList.class);
     }
 
     @Transactional
     @Override
-    public Organization findByName(String name) {
-        return getOrganizationForTest();
-    }
+    public ResponseView update(@Validated OrganizationDTOForGet org) {
 
-    @Transactional
-    @Override
-    public ResponseView update(Organization org) {
-        return responseView = new ResponseView(true);
+        return organizationDao.update(mapperFacade.map(org,Organization.class));
     }
 
     @Transactional
     @Override
     public ResponseView add(Organization org) {
-        return responseView = new ResponseView(true);
+
+        return organizationDao.add(org);
     }
 }

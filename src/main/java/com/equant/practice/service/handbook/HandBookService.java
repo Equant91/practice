@@ -1,11 +1,12 @@
 package com.equant.practice.service.handbook;
 
-import com.equant.practice.model.Country;
-import com.equant.practice.model.Document;
+import com.equant.practice.dto.country.CountryDTO;
+import com.equant.practice.dto.document.DocumentDTO;
 
 import java.util.List;
 
 public interface HandBookService {
-    List<Document> getAllDocument();
-    List<Country> getAllCountry();
+    List<DocumentDTO> getAllDocument();
+    List<CountryDTO> getAllCountry();
+
 }

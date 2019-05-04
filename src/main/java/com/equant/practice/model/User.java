@@ -5,15 +5,27 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Version;
+
 @NoArgsConstructor
 @EqualsAndHashCode
+@Entity
 public class User {
 
     /*Уникальный идентификатор*/
     @Getter
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_seq")
+    @SequenceGenerator(name = "user_seq", sequenceName = "user_seq")
     private long id;
 
     /*Служебное поле hibernate*/
+    @Version
     private long version;
 
     /*Уникальный идентификатор офиса*/
@@ -50,7 +62,7 @@ public class User {
 
     /* Индефицирован*/
     @Getter @Setter
-    private boolean isIdentified;
+    private Boolean isIdentified;
 }
 
 

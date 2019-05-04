@@ -36,13 +36,13 @@ public class UserControllerTestInt {
     @Test
     public void update() {
         ResponseView responseView = restTemplate.postForObject("http://localhost:8888/api/user/update", getUserForTest(), ResponseView.class);
-        Assert.assertEquals(responseView.isSuccess(), true);
+        Assert.assertEquals(responseView.getSuccess(), true);
     }
 
     @Test
     public void add() {
         ResponseView responseView = restTemplate.postForObject("http://localhost:8888/api/user/save", getUserForTest(), ResponseView.class);
-        Assert.assertEquals(responseView.isSuccess(), true);
+        Assert.assertEquals(responseView.getSuccess(), true);
     }
 
     private Wrapper getWrapeprForTest() {
