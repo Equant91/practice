@@ -3,7 +3,7 @@ package com.equant.practice.service.organization;
 import com.equant.practice.ResponseView;
 import com.equant.practice.dao.organization.OrganizationDao;
 import com.equant.practice.dto.organization.OrgRequest;
-import com.equant.practice.dto.organization.OrganizationDTOForGet;
+import com.equant.practice.dto.organization.OrganizationDTOForGetAndUpdate;
 import com.equant.practice.dto.organization.OrganizationDTOForList;
 import com.equant.practice.mapper.MapperFacade;
 import com.equant.practice.model.Organization;
@@ -32,9 +32,9 @@ public class OrganizationServiceImpl implements OrganizationService {
 
     @Transactional
     @Override
-    public OrganizationDTOForGet findByID(long id) {
+    public OrganizationDTOForGetAndUpdate findByID(long id) {
 
-        return mapperFacade.map(organizationDao.findByID(id), OrganizationDTOForGet.class);
+        return mapperFacade.map(organizationDao.findByID(id), OrganizationDTOForGetAndUpdate.class);
     }
 
     @Transactional
@@ -46,7 +46,7 @@ public class OrganizationServiceImpl implements OrganizationService {
 
     @Transactional
     @Override
-    public ResponseView update(@Validated OrganizationDTOForGet org) {
+    public ResponseView update(@Validated OrganizationDTOForGetAndUpdate org) {
 
         return organizationDao.update(mapperFacade.map(org,Organization.class));
     }

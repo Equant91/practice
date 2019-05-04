@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class OrganizationDTOForGet {
+public class OrganizationDTOForGetAndUpdate {
 
     /*Уникальный идентификатор*/
     private long id;

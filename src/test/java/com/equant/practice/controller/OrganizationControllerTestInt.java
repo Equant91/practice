@@ -3,7 +3,7 @@ package com.equant.practice.controller;
 import com.equant.practice.PracticeApplication;
 import com.equant.practice.ResponseView;
 import com.equant.practice.dto.organization.OrgRequest;
-import com.equant.practice.dto.organization.OrganizationDTOForGet;
+import com.equant.practice.dto.organization.OrganizationDTOForGetAndUpdate;
 import com.equant.practice.dto.organization.OrganizationDTOForList;
 import com.equant.practice.model.Organization;
 
@@ -70,7 +70,7 @@ public class OrganizationControllerTestInt {
         return orgRequest;
     }
     private Wrapper getWrapperOrganizationForGet() {
-        OrganizationDTOForGet organization = new OrganizationDTOForGet();
+        OrganizationDTOForGetAndUpdate organization = new OrganizationDTOForGetAndUpdate();
         organization.setAddress("ул.Цюрупы");
         organization.setFullName("Центр социального обслуживания Гармония");
         organization.setName("Гармония");
@@ -81,8 +81,8 @@ public class OrganizationControllerTestInt {
         organization.setKpp("321456123");
         return new Wrapper(organization);
     }
-    private OrganizationDTOForGet getOrganizationForTestUpdate() {
-        OrganizationDTOForGet organization = new OrganizationDTOForGet();
+    private OrganizationDTOForGetAndUpdate getOrganizationForTestUpdate() {
+        OrganizationDTOForGetAndUpdate organization = new OrganizationDTOForGetAndUpdate();
         organization.setAddress("ул.Главная");
         organization.setFullName("Центр Отдыха Пентингтон");
         organization.setName("Пентингтон");
@@ -120,7 +120,7 @@ public class OrganizationControllerTestInt {
     @AllArgsConstructor
     @EqualsAndHashCode
     private static class Wrapper {
-        OrganizationDTOForGet data;
+        OrganizationDTOForGetAndUpdate data;
 
     }
 
