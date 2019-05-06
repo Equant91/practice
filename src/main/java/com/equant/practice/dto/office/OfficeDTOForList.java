@@ -11,7 +11,7 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 public class OfficeDTOForList {
     @NotNull
-    private long id;
+    private Long id;
 
     @NotEmpty
     /* Название организации*/

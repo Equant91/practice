@@ -12,7 +12,7 @@ public class OfficeDTOForGet {
 
 
     /* Уникальный идентификатор*/
-    private long id;
+    private Long id;
 
     /*Название офиса*/
     private String name;

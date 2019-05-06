@@ -3,6 +3,7 @@ package com.equant.practice.controller;
 import com.equant.practice.PracticeApplication;
 import com.equant.practice.ResponseView;
 import com.equant.practice.dto.organization.OrgRequest;
+import com.equant.practice.dto.organization.OrganizationDTOForAdd;
 import com.equant.practice.dto.organization.OrganizationDTOForGetAndUpdate;
 import com.equant.practice.dto.organization.OrganizationDTOForList;
 import com.equant.practice.model.Organization;
@@ -12,10 +13,12 @@ import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import org.junit.Assert;
+import org.junit.FixMethodOrder;
 import org.junit.Test;
 
 import org.junit.runner.RunWith;
 
+import org.junit.runners.MethodSorters;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
@@ -29,31 +32,33 @@ import java.util.List;
 @WebAppConfiguration
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = PracticeApplication.class)
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class OrganizationControllerTestInt {
+
 
     RestTemplate restTemplate = new RestTemplate();
 
     @Test
-    public void getById() {
+    public void test1GetById() {
         Wrapper wrapperRes = restTemplate.getForObject("http://localhost:8888/api/organization/1", Wrapper.class);
         Assert.assertEquals(wrapperRes, getWrapperOrganizationForGet());
     }
 
     @Test
-    public void getByName() {
+    public void test2GetByName() {
         WrapperOrgDTO wrapperReq = restTemplate. postForObject("http://localhost:8888/api/organization/list", getOrgRequest() , WrapperOrgDTO.class);
         Assert.assertEquals(wrapperReq, getWrapperOrganizationForGetByName());
     }
 
 
     @Test
-    public void update() {
+    public void test3Update() {
         ResponseView responseView = restTemplate.postForObject("http://localhost:8888/api/organization/update", getOrganizationForTestUpdate(), ResponseView.class);
         Assert.assertEquals(responseView.getSuccess(), true);
     }
 
     @Test
-    public void add() {
+    public void test4Add() {
         ResponseView responseView = restTemplate.postForObject("http://localhost:8888/api/organization/save", getOrganizationForTestAdd(), ResponseView.class);
         Assert.assertEquals(responseView.getSuccess(), true);
     }
@@ -77,7 +82,7 @@ public class OrganizationControllerTestInt {
         organization.setInn("3903243212");
         organization.setIsActive(true);
         organization.setPhone("408090");
-        organization.setId(1);
+        organization.setId(1L);
         organization.setKpp("321456123");
         return new Wrapper(organization);
     }
@@ -89,12 +94,12 @@ public class OrganizationControllerTestInt {
         organization.setInn("390323453");
         organization.setIsActive(true);
         organization.setPhone("408890");
-        organization.setId(1);
+        organization.setId(1L);
         organization.setKpp("452356123");
         return organization;
     }
-    private Organization getOrganizationForTestAdd() {
-        Organization organization = new Organization();
+    private OrganizationDTOForAdd getOrganizationForTestAdd() {
+        OrganizationDTOForAdd organization = new OrganizationDTOForAdd();
         organization.setAddress("ул.Главная");
         organization.setFullName("Центр Отдыха Пентингтон");
         organization.setName("Пентингтон");
@@ -106,7 +111,7 @@ public class OrganizationControllerTestInt {
     }
     private WrapperOrgDTO getWrapperOrganizationForGetByName (){
         OrganizationDTOForList organizationDTO = new OrganizationDTOForList();
-        organizationDTO.setId(1);
+        organizationDTO.setId(1L);
         organizationDTO.setName("Гармония");
         organizationDTO.setIsActive(true);
         List<OrganizationDTOForList>  organizationDTOs= new ArrayList<>();

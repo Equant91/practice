@@ -3,6 +3,7 @@ package com.equant.practice.service.organization;
 import com.equant.practice.ResponseView;
 import com.equant.practice.dao.organization.OrganizationDao;
 import com.equant.practice.dto.organization.OrgRequest;
+import com.equant.practice.dto.organization.OrganizationDTOForAdd;
 import com.equant.practice.dto.organization.OrganizationDTOForGetAndUpdate;
 import com.equant.practice.dto.organization.OrganizationDTOForList;
 import com.equant.practice.mapper.MapperFacade;
@@ -53,8 +54,8 @@ public class OrganizationServiceImpl implements OrganizationService {
 
     @Transactional
     @Override
-    public ResponseView add(Organization org) {
+    public ResponseView add(OrganizationDTOForAdd org) {
 
-        return organizationDao.add(org);
+        return organizationDao.add(mapperFacade.map(org,Organization.class));
     }
 }

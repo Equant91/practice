@@ -14,7 +14,7 @@ public class DocumentDTO {
 
     /*Код документа*/
     @NotNull
-    private long docCode;
+    private Long docCode;
 
     /*Название документа*/
     @NotEmpty

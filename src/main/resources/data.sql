@@ -19,5 +19,3 @@ VALUES (user_seq.nextval, 0, office_seq.currval, 'Андрей', 'менедже
 INSERT INTO organization_office(org_id, office_id)
 VALUES( org_seq.currval,office_seq.currval );
 
-INSERT INTO handbook_doc ( id,version, doc_code, doc_name)
-VALUES (handbook_doc_seq.nextval, 0,7, 'Военный билет' );

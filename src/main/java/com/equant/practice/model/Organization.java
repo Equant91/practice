@@ -32,7 +32,7 @@ import java.util.List;
 import java.util.Set;
 
 @NoArgsConstructor
-@EqualsAndHashCode
+@EqualsAndHashCode(exclude = "offices" )
 @Entity
 @Data
 public class Organization {
@@ -41,11 +41,11 @@ public class Organization {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "org_seq")
     @SequenceGenerator(name = "org_seq", sequenceName = "org_seq",allocationSize = 0)
-    private long id;
+    private Long id;
 
     /* Служебное поле hibernate*/
     @Version
-    private long version;
+    private Long version;
 
     /* Название организации*/
     @Column

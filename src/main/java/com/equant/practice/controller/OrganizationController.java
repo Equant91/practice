@@ -2,6 +2,7 @@ package com.equant.practice.controller;
 
 import com.equant.practice.ResponseView;
 import com.equant.practice.dto.organization.OrgRequest;
+import com.equant.practice.dto.organization.OrganizationDTOForAdd;
 import com.equant.practice.dto.organization.OrganizationDTOForGetAndUpdate;
 import com.equant.practice.dto.organization.OrganizationDTOForList;
 import com.equant.practice.model.Organization;
@@ -22,7 +23,7 @@ public class OrganizationController {
     public OrganizationDTOForGetAndUpdate getById(@PathVariable("id") long id ){
        OrganizationDTOForGetAndUpdate organization = organizationService.findByID(id);
         if(organization == null){
-            throw  new RuntimeException("Not found organization with this id: " + id);
+            throw new RuntimeException("Not found organization with this id: " + id);
         }
         return organization;
     }
@@ -42,7 +43,7 @@ public class OrganizationController {
     }
 
     @RequestMapping(path = "/save", method = RequestMethod.POST)
-    public ResponseView add(@RequestBody Organization organization){
+    public ResponseView add(@RequestBody OrganizationDTOForAdd organization){
 
         return organizationService.add(organization);
     }

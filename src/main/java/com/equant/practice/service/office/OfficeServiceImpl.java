@@ -43,8 +43,8 @@ public class OfficeServiceImpl implements OfficeService {
     }
     @Transactional
     @Override
-    public ResponseView update(Office office) {
-        return officeDao.update(office);
+    public ResponseView update(OfficeDTOForGet office) {
+        return officeDao.update(mapperFacade.map(office,Office.class));
     }
 
     @Transactional

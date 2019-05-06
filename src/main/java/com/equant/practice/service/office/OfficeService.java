@@ -13,7 +13,7 @@ public interface OfficeService {
 
         OfficeDTOForGet findByID(long id);
         List<OfficeDTOForList> findByOrgId(OfficeDTORequestForList officeDTORequestForList);
-        ResponseView update(Office office);
+        ResponseView update(OfficeDTOForGet office);
         ResponseView add(OfficeDTORequestForAdd office);
 
 }

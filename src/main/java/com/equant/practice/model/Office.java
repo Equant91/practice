@@ -19,6 +19,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Version;
 import java.util.ArrayList;
@@ -28,7 +29,7 @@ import java.util.List;
 import java.util.Set;
 
 @NoArgsConstructor
-@EqualsAndHashCode
+@EqualsAndHashCode(exclude = {"organizations", "users"})
 @Entity
 @Data
 public class Office {
@@ -39,12 +40,12 @@ public class Office {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "office_seq")
     @SequenceGenerator(name = "office_seq", sequenceName = "office_seq")
-    private long id;
+    private Long id;
 
     /*Служебное поле hibernate*/
 
     @Version
-    private long version;
+    private Long version;
 
     /*Название офиса*/
    @Column
@@ -77,6 +78,8 @@ public class Office {
         organization.getOffices().add(this);
 
     }
+    @OneToMany(mappedBy = "office" )
+    private Set<User> users;
 }
 
 

@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS user(
   phone            INTEGER COMMENT 'Телефон',
   certain_doc_id   INTEGER COMMENT 'Уникальный идентификатор конкретного документа',
   country_id       INTEGER COMMENT 'Уникальный идентификатор страны гражданства',
-  isIdentified     BOOLEAN COMMENT 'Индефицирован'
+  is_identified     BOOLEAN COMMENT 'Индефицирован'
 );
 COMMENT ON TABLE user IS 'Работник';
 

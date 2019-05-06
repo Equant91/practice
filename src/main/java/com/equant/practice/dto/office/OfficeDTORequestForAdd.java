@@ -8,7 +8,7 @@ import javax.validation.constraints.NotNull;
 public class OfficeDTORequestForAdd {
     /* Уникальный идентификатор*/
     @NotNull
-    private long orgId;
+    private Long orgId;
 
     /*Название офиса*/
     private String name;

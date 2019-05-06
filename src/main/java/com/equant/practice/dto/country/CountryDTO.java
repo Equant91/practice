@@ -15,7 +15,7 @@ public class CountryDTO {
 
     /*Номер страны*/
     @NotNull
-    private int citizenshipCode;
+    private Integer citizenshipCode;
 
     /*Название страны*/
     @NotEmpty

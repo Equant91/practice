@@ -40,7 +40,7 @@ public class HandbookControllerTestInt {
     private WrapperForDocument getAllDocuments() {
         List<Document> documents = new ArrayList<>();
         Document document1 = new Document();
-        document1.setDocCode(3);
+        document1.setDocCode(3L);
         document1.setDocName("Свидетельство о рождение");
         documents.add(document1);
         return new WrapperForDocument(documents);

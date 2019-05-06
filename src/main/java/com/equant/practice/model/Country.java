@@ -10,12 +10,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Version;
+import java.util.Set;
 
 @NoArgsConstructor
-@EqualsAndHashCode
+@EqualsAndHashCode(exclude = "users")
 @Entity
 @Table(name = "country")
 public class Country {
@@ -25,7 +27,7 @@ public class Country {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "country_seq")
     @SequenceGenerator(name = "country_seq", sequenceName = "country_seq")
     @Getter
-    private long id;
+    private Long id;
 
     /*Служебное поле hibernate*/
     @Version
@@ -34,11 +36,14 @@ public class Country {
     /*Номер страны*/
     @Getter @Setter
     @Column(name = "citizenship_code")
-    private int citizenshipCode;
+    private Integer citizenshipCode;
 
     /*Название страны*/
     @Getter @Setter
     @Column(name = "citizenship_name" )
     private String citizenshipName;
+
+    @OneToMany(mappedBy = "country")
+    private Set<User> users;
 
 }

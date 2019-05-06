@@ -1,18 +1,11 @@
 package com.equant.practice.dto.organization;
 
-
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
-public class OrganizationDTOForGetAndUpdate {
-
-    /*Уникальный идентификатор*/
-    private Long id;
-
+public class OrganizationDTOForAdd {
     /* Название организации*/
 
     private String name;

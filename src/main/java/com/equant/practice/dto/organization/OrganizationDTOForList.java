@@ -13,7 +13,7 @@ import javax.validation.constraints.NotNull;
 public class OrganizationDTOForList {
 
    @NotNull
-    private long id;
+    private Long id;
 
    @NotEmpty
     /* Название организации*/

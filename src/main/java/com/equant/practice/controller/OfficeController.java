@@ -28,7 +28,7 @@ public class OfficeController {
     public OfficeDTOForGet getById(@PathVariable("id") long id) {
         OfficeDTOForGet office = officeService.findByID(id);
         if (office == null) {
-            throw new RuntimeException("Not found office with this id");
+            throw new RuntimeException("Not found office with this id" + id);
         }
         return office;
     }
@@ -43,7 +43,7 @@ public class OfficeController {
     }
 
     @RequestMapping(path = "/update", method = RequestMethod.POST)
-    public ResponseView update(@RequestBody Office office) {
+    public ResponseView update(@RequestBody OfficeDTOForGet office) {
         return officeService.update(office);
     }
 

@@ -1,12 +1,17 @@
 package com.equant.practice.service.user;
 
 import com.equant.practice.ResponseView;
+import com.equant.practice.dto.user.UserDTOForGet;
+import com.equant.practice.dto.user.UserDTORequestForList;
+import com.equant.practice.dto.user.UserDTOResponseForList;
 import com.equant.practice.model.User;
 
-public interface UserService {
-    User findByID(long id);
+import java.util.List;
 
-    User findByName(String name);
+public interface UserService {
+    UserDTOForGet findByID(long id);
+
+    List<UserDTOResponseForList> findByOfficeId(UserDTORequestForList userDTORequestForList);
 
     ResponseView update(User user);
 

@@ -1,67 +1,82 @@
 package com.equant.practice.model;
 
+import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Version;
 
 @NoArgsConstructor
-@EqualsAndHashCode
+@EqualsAndHashCode(exclude = {"office","certainDocument", "country"})
 @Entity
+@Data
 public class User {
 
     /*Уникальный идентификатор*/
-    @Getter
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_seq")
     @SequenceGenerator(name = "user_seq", sequenceName = "user_seq")
-    private long id;
+    private Long id;
 
     /*Служебное поле hibernate*/
     @Version
-    private long version;
+    private Long version;
 
     /*Уникальный идентификатор офиса*/
-    @Getter @Setter
-    private long office_id;
+   /*office_id*/
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "office_id")
+    private Office office;
 
     /* Имя*/
     @Getter @Setter
-    private String first_name;
+    @Column(name = "first_name")
+    private String firstName;
 
     /*Фамилия*/
-    @Getter @Setter
-    private String second_name;
+    @Column(name = "second_name")
+    private String secondName;
 
     /* Второе имя*/
-    @Getter @Setter
-    private String middle_name;
+    @Column(name = "middle_name")
+    private String middleName;
 
     /* Должность*/
-    @Getter @Setter
+    @Column
     private String position;
 
     /* Телефон*/
-    @Getter @Setter
+    @Column
     private String phone;
 
     /*Уникальный идентификатор конкретного документа*/
-    @Getter @Setter
-    private long certain_doc_id;
+    /*certain_doc_id;*/
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "certain_doc_id")
+     private CertainDocument certainDocument;
+
 
     /* Уникальный идентификатор страны гражданства*/
-    @Getter @Setter
-    private long country_id;
+    /*country_id*/
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "country_id")
+    private Country country;
 
     /* Индефицирован*/
-    @Getter @Setter
+    @Column(name = "is_identified")
     private Boolean isIdentified;
 }
 
