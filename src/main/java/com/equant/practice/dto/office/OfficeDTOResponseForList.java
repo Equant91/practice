@@ -1,4 +1,4 @@
-package com.equant.practice.dto.organization;
+package com.equant.practice.dto.office;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,19 +9,14 @@ import javax.validation.constraints.NotNull;
 
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
-public class OrganizationDTOForList {
+public class OfficeDTOResponseForList {
 
-   @NotNull
     private Long id;
 
-   @NotEmpty
     /* Название организации*/
     private String name;
 
-    @NotNull
     /* Активность*/
     private Boolean isActive;
-
 
 }

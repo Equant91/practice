@@ -11,6 +11,7 @@ import javax.validation.constraints.NotNull;
 public class OfficeDTORequestForList {
 
     /*ID организации*/
+    @NotNull
     private Long orgId;
 
     /* Название организации*/

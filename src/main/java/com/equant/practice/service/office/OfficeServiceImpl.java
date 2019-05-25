@@ -2,8 +2,8 @@ package com.equant.practice.service.office;
 
 import com.equant.practice.ResponseView;
 import com.equant.practice.dao.office.OfficeDao;
-import com.equant.practice.dto.office.OfficeDTOForGet;
-import com.equant.practice.dto.office.OfficeDTOForList;
+import com.equant.practice.dto.office.OfficeDTOForGetAndUpdate;
+import com.equant.practice.dto.office.OfficeDTOResponseForList;
 import com.equant.practice.dto.office.OfficeDTORequestForAdd;
 import com.equant.practice.dto.office.OfficeDTORequestForList;
 import com.equant.practice.mapper.MapperFacade;
@@ -32,18 +32,18 @@ public class OfficeServiceImpl implements OfficeService {
 
     @Transactional
     @Override
-    public OfficeDTOForGet findByID(long id) {
-        return mapperFacade.map(officeDao.findByID(id), OfficeDTOForGet.class);
+    public OfficeDTOForGetAndUpdate findByID(long id) {
+        return mapperFacade.map(officeDao.findByID(id), OfficeDTOForGetAndUpdate.class);
     }
 
     @Transactional
     @Override
-    public List<OfficeDTOForList> findByOrgId(OfficeDTORequestForList officeDTORequestForList) {
-        return mapperFacade.mapAsList(officeDao.findByOrgId(officeDTORequestForList),OfficeDTOForList.class);
+    public List<OfficeDTOResponseForList> findByOrgId(OfficeDTORequestForList officeDTORequestForList) {
+        return mapperFacade.mapAsList(officeDao.findByOrgId(officeDTORequestForList), OfficeDTOResponseForList.class);
     }
     @Transactional
     @Override
-    public ResponseView update(OfficeDTOForGet office) {
+    public ResponseView update(OfficeDTOForGetAndUpdate office) {
         return officeDao.update(mapperFacade.map(office,Office.class));
     }
 

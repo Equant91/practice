@@ -1,15 +1,15 @@
 package com.equant.practice.controller;
 
 import com.equant.practice.ResponseView;
-import com.equant.practice.dto.office.OfficeDTOForGet;
-import com.equant.practice.dto.office.OfficeDTOForList;
+import com.equant.practice.dto.office.OfficeDTOForGetAndUpdate;
+import com.equant.practice.dto.office.OfficeDTOResponseForList;
 import com.equant.practice.dto.office.OfficeDTORequestForAdd;
 import com.equant.practice.dto.office.OfficeDTORequestForList;
-import com.equant.practice.model.Office;
 import com.equant.practice.service.office.OfficeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -25,8 +25,8 @@ public class OfficeController {
     }
 
     @RequestMapping(path = "/{id:[\\d]+}", method = RequestMethod.GET)
-    public OfficeDTOForGet getById(@PathVariable("id") long id) {
-        OfficeDTOForGet office = officeService.findByID(id);
+    public OfficeDTOForGetAndUpdate getById(@PathVariable("id") long id) {
+        OfficeDTOForGetAndUpdate office = officeService.findByID(id);
         if (office == null) {
             throw new RuntimeException("Not found office with this id" + id);
         }
@@ -34,21 +34,21 @@ public class OfficeController {
     }
 
     @RequestMapping(path = "/list", method = RequestMethod.POST)
-    public List<OfficeDTOForList> getByOrgId(@RequestBody OfficeDTORequestForList officeDTORequestForList) {
-        List<OfficeDTOForList> officeDTOForLists = officeService.findByOrgId(officeDTORequestForList);
-        if (officeDTOForLists == null) {
+    public List<OfficeDTOResponseForList> getByOrgId(@Valid @RequestBody OfficeDTORequestForList officeDTORequestForList) {
+        List<OfficeDTOResponseForList> officeDTOResponseForLists = officeService.findByOrgId(officeDTORequestForList);
+        if (officeDTOResponseForLists == null) {
             throw new RuntimeException("Not found office with this name");
         }
-        return officeDTOForLists ;
+        return officeDTOResponseForLists;
     }
 
     @RequestMapping(path = "/update", method = RequestMethod.POST)
-    public ResponseView update(@RequestBody OfficeDTOForGet office) {
+    public ResponseView update(@Valid @RequestBody OfficeDTOForGetAndUpdate office) {
         return officeService.update(office);
     }
 
     @RequestMapping(path = "/save", method = RequestMethod.POST)
-    public ResponseView add(@RequestBody OfficeDTORequestForAdd office) {
+    public ResponseView add(@Valid @RequestBody OfficeDTORequestForAdd office) {
         return officeService.add(office);
     }
 }

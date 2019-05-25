@@ -1,10 +1,12 @@
 package com.equant.practice.dto.office;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotNull;
 
 @Data
+@NoArgsConstructor
 public class OfficeDTORequestForAdd {
     /* Уникальный идентификатор*/
     @NotNull

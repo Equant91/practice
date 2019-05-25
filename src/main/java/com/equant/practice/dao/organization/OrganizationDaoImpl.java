@@ -1,7 +1,7 @@
 package com.equant.practice.dao.organization;
 
 import com.equant.practice.ResponseView;
-import com.equant.practice.dto.organization.OrgRequest;
+import com.equant.practice.dto.organization.OrgDTORequestForList;
 import com.equant.practice.model.Organization;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,10 +34,10 @@ public class OrganizationDaoImpl implements OrganizationDao {
     }
 
     @Override
-    public List<Organization> findByName(OrgRequest orgRequest) {
-        String name = orgRequest.getName();
-        String inn = orgRequest.getInn();
-        Boolean isActive = orgRequest.getIsActive();
+    public List<Organization> findByName(OrgDTORequestForList orgDTORequestForList) {
+        String name = orgDTORequestForList.getName();
+        String inn = orgDTORequestForList.getInn();
+        Boolean isActive = orgDTORequestForList.getIsActive();
         CriteriaBuilder builder = em.getCriteriaBuilder();
         CriteriaQuery<Organization> criteriaQuery = builder.createQuery(Organization.class);
         Root<Organization> organizationRoot = criteriaQuery.from(Organization.class);

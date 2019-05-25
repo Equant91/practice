@@ -2,11 +2,10 @@ package com.equant.practice.controller;
 
 import com.equant.practice.PracticeApplication;
 import com.equant.practice.ResponseView;
-import com.equant.practice.dto.office.OfficeDTOForGet;
+import com.equant.practice.dto.office.OfficeDTOForGetAndUpdate;
 import com.equant.practice.dto.office.OfficeDTORequestForAdd;
-import com.equant.practice.dto.office.OfficeDTOForList;
+import com.equant.practice.dto.office.OfficeDTOResponseForList;
 import com.equant.practice.dto.office.OfficeDTORequestForList;
-import com.equant.practice.model.Office;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.junit.Assert;
@@ -58,7 +57,7 @@ public class OfficeControllerTestInt {
 
 
     private Wrapper getWrapperOfficeDTOForGet() {
-        OfficeDTOForGet office = new OfficeDTOForGet();
+        OfficeDTOForGetAndUpdate office = new OfficeDTOForGetAndUpdate();
         office.setId(1L);
         office.setName("Центральный");
         office.setAddress("ул.Цюрупы");
@@ -66,8 +65,8 @@ public class OfficeControllerTestInt {
         office.setIsActive(true);
         return new Wrapper(office);
     }
-    private OfficeDTOForGet getOfficeForTestUpdate() {
-        OfficeDTOForGet office = new OfficeDTOForGet();
+    private OfficeDTOForGetAndUpdate getOfficeForTestUpdate() {
+        OfficeDTOForGetAndUpdate office = new OfficeDTOForGetAndUpdate();
         office.setId(1L);
         office.setName("Второй");
         office.setAddress("ул.Лацмана");
@@ -93,19 +92,19 @@ public class OfficeControllerTestInt {
         return officeDTORequestForList;
     }
     private WrapperOfficeDTO getWrapperOfficeDTOForGetByOrgId(){
-        OfficeDTOForList officeDTOForList = new OfficeDTOForList();
-        officeDTOForList.setId(1L);
-        officeDTOForList.setName("Центральный");
-        officeDTOForList.setIsActive(true);
-        List<OfficeDTOForList>  officesDTOForList= new ArrayList<>();
-        officesDTOForList.add(officeDTOForList);
+        OfficeDTOResponseForList officeDTOResponseForList = new OfficeDTOResponseForList();
+        officeDTOResponseForList.setId(1L);
+        officeDTOResponseForList.setName("Центральный");
+        officeDTOResponseForList.setIsActive(true);
+        List<OfficeDTOResponseForList>  officesDTOForList= new ArrayList<>();
+        officesDTOForList.add(officeDTOResponseForList);
         return new WrapperOfficeDTO(officesDTOForList);
     }
         @lombok.Data
         @NoArgsConstructor
         @AllArgsConstructor
         private static class Wrapper {
-            OfficeDTOForGet data;
+            OfficeDTOForGetAndUpdate data;
 
         }
 
@@ -113,7 +112,7 @@ public class OfficeControllerTestInt {
         @NoArgsConstructor
         @AllArgsConstructor
         private static class WrapperOfficeDTO {
-            List<OfficeDTOForList> data;
+            List<OfficeDTOResponseForList> data;
 
         }
 

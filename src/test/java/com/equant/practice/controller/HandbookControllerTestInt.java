@@ -2,7 +2,7 @@ package com.equant.practice.controller;
 
 import com.equant.practice.PracticeApplication;
 import com.equant.practice.model.Country;
-import com.equant.practice.model.Document;
+import com.equant.practice.model.DocumentType;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.junit.Assert;
@@ -15,8 +15,6 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static org.junit.Assert.*;
 
 @SpringBootTest(classes = PracticeApplication.class)
 @WebAppConfiguration
@@ -38,20 +36,29 @@ public class HandbookControllerTestInt {
 
 
     private WrapperForDocument getAllDocuments() {
-        List<Document> documents = new ArrayList<>();
-        Document document1 = new Document();
-        document1.setDocCode(3L);
-        document1.setDocName("Свидетельство о рождение");
-        documents.add(document1);
-        return new WrapperForDocument(documents);
+        List<DocumentType> documentTypes = new ArrayList<>();
+
+        DocumentType documentType1 = new DocumentType();
+        documentType1.setDocCode(3L);
+        documentType1.setDocName("Свидетельство о рождение");
+        documentTypes.add(documentType1);
+        DocumentType documentType2 = new DocumentType();
+        documentType2.setDocCode(7L);
+        documentType2.setDocName("Военный билет");
+        documentTypes.add(documentType2);
+        return new WrapperForDocument(documentTypes);
     }
 
     private WrapperForCountry getAllCountry() {
         List<Country> countries = new ArrayList<>();
         Country country1 = new Country();
-        country1.setCitizenshipCode(643);
+        country1.setCitizenshipCode("643");
         country1.setCitizenshipName("Российская Федерация");
         countries.add(country1);
+        Country country2 = new Country();
+        country2.setCitizenshipCode("32");
+        country2.setCitizenshipName("Аргентина");
+        countries.add(country2);
         return new WrapperForCountry(countries);
     }
 
@@ -67,6 +74,6 @@ public class HandbookControllerTestInt {
     @NoArgsConstructor
     @AllArgsConstructor
     private static class WrapperForDocument {
-        List<Document> data;
+        List<DocumentType> data;
     }
 }

@@ -39,7 +39,7 @@ public class Office {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "office_seq")
-    @SequenceGenerator(name = "office_seq", sequenceName = "office_seq")
+    @SequenceGenerator(name = "office_seq", sequenceName = "office_seq",allocationSize = 0)
     private Long id;
 
     /*Служебное поле hibernate*/

@@ -1,7 +1,7 @@
 package com.equant.practice.dao.handbook;
 
 import com.equant.practice.model.Country;
-import com.equant.practice.model.Document;
+import com.equant.practice.model.DocumentType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -21,13 +21,13 @@ public class HandBookDaoImpl implements HandBookDao {
 
 
     @Override
-    public Document loadDocById(long id) {
-        return em.find(Document.class, id);
+    public DocumentType loadDocById(long id) {
+        return em.find(DocumentType.class, id);
     }
 
     @Override
-    public List<Document> allDocument() {
-        TypedQuery<Document> query = em.createQuery("Select d From Document d", Document.class);
+    public List<DocumentType> allDocument() {
+        TypedQuery<DocumentType> query = em.createQuery("Select d From DocumentType d", DocumentType.class);
         return query.getResultList();
     }
 

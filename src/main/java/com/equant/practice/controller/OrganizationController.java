@@ -1,15 +1,15 @@
 package com.equant.practice.controller;
 
 import com.equant.practice.ResponseView;
-import com.equant.practice.dto.organization.OrgRequest;
+import com.equant.practice.dto.organization.OrgDTORequestForList;
 import com.equant.practice.dto.organization.OrganizationDTOForAdd;
 import com.equant.practice.dto.organization.OrganizationDTOForGetAndUpdate;
-import com.equant.practice.dto.organization.OrganizationDTOForList;
-import com.equant.practice.model.Organization;
+import com.equant.practice.dto.organization.OrganizationDTOResponseForList;
 import com.equant.practice.service.organization.OrganizationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -29,21 +29,21 @@ public class OrganizationController {
     }
 
     @RequestMapping(path = "/list", method = RequestMethod.POST)
-    public List<OrganizationDTOForList> getByName(@RequestBody OrgRequest orgRequest){
-        List<OrganizationDTOForList> organizations = organizationService.findByName(orgRequest);
+    public List<OrganizationDTOResponseForList> getByName(@Valid @RequestBody OrgDTORequestForList orgDTORequestForList){
+        List<OrganizationDTOResponseForList> organizations = organizationService.findByName(orgDTORequestForList);
     if(organizations == null){
-            throw  new RuntimeException("Not found organization with this name: " + orgRequest.getName());
+            throw  new RuntimeException("Not found organization with this name: " + orgDTORequestForList.getName());
         }
         return organizations;
     }
 
     @RequestMapping(path = "/update", method = RequestMethod.POST)
-    public ResponseView update(@RequestBody OrganizationDTOForGetAndUpdate organization){
+    public ResponseView update(@Valid @RequestBody OrganizationDTOForGetAndUpdate organization){
         return organizationService.update(organization);
     }
 
     @RequestMapping(path = "/save", method = RequestMethod.POST)
-    public ResponseView add(@RequestBody OrganizationDTOForAdd organization){
+    public ResponseView add(@Valid @RequestBody OrganizationDTOForAdd organization){
 
         return organizationService.add(organization);
     }

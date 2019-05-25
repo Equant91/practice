@@ -8,16 +8,19 @@ import javax.validation.constraints.NotNull;
 
 @Data
 @NoArgsConstructor
-public class OfficeDTOForGet {
+public class OfficeDTOForGetAndUpdate {
 
 
     /* Уникальный идентификатор*/
+    @NotNull
     private Long id;
 
     /*Название офиса*/
+    @NotNull
     private String name;
 
     /*Адрес офиса*/
+    @NotNull
     private String address;
 
     /*Телефон*/

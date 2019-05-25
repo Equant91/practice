@@ -1,10 +1,6 @@
 package com.equant.practice.mapper;
 
 
-import com.equant.practice.dto.user.UserDTOForGet;
-import com.equant.practice.dto.user.UserDTOResponseForList;
-import com.equant.practice.dto.user.WrapperForUserDTO;
-import com.equant.practice.model.User;
 import ma.glasnost.orika.MapperFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,15 +31,15 @@ mapperFactory.getMapperFacade().map(sourceObject,destinationObject);
     public <S, D> List<D> mapAsList(Iterable<S> source, Class<D> destinationClass) {
         return mapperFactory.getMapperFacade().mapAsList(source,destinationClass);
     }
-    public UserDTOForGet mapWrapper (WrapperForUserDTO wrapperForUserDTO){
-        UserDTOForGet userDTOForGet = new UserDTOForGet();
-         mapperFactory.getMapperFacade().map(wrapperForUserDTO.getCertainDocument(), userDTOForGet);
+/*    public UserDTOLong mapWrapper (WrapperForUserDTO wrapperForUserDTO){
+        UserDTOLong userDTOForGet = new UserDTOLong();
          mapperFactory.getMapperFacade().map(wrapperForUserDTO.getDocument(), userDTOForGet);
+         mapperFactory.getMapperFacade().map(wrapperForUserDTO.getDocumentType(), userDTOForGet);
          mapperFactory.getMapperFacade().map(wrapperForUserDTO.getCountry(), userDTOForGet);
-         /*выполняется послеждним чтобы правильно заполнилось поле ID*/
+         *//*выполняется послеждним чтобы правильно заполнилось поле ID*//*
         mapperFactory.getMapperFacade().map(wrapperForUserDTO.getUser(), userDTOForGet);
         System.out.println(userDTOForGet);
          return userDTOForGet;
 
-    }
+    }*/
 }

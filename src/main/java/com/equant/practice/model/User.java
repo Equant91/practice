@@ -20,7 +20,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Version;
 
 @NoArgsConstructor
-@EqualsAndHashCode(exclude = {"office","certainDocument", "country"})
+@EqualsAndHashCode(exclude = {"office","document", "country"})
 @Entity
 @Data
 public class User {
@@ -28,7 +28,7 @@ public class User {
     /*Уникальный идентификатор*/
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_seq")
-    @SequenceGenerator(name = "user_seq", sequenceName = "user_seq")
+    @SequenceGenerator(name = "user_seq", sequenceName = "user_seq",allocationSize = 0)
     private Long id;
 
     /*Служебное поле hibernate*/
@@ -37,12 +37,11 @@ public class User {
 
     /*Уникальный идентификатор офиса*/
    /*office_id*/
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "office_id")
     private Office office;
 
     /* Имя*/
-    @Getter @Setter
     @Column(name = "first_name")
     private String firstName;
 
@@ -65,13 +64,13 @@ public class User {
     /*Уникальный идентификатор конкретного документа*/
     /*certain_doc_id;*/
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "certain_doc_id")
-     private CertainDocument certainDocument;
+    @JoinColumn(name = "document_id")
+     private Document document;
 
 
     /* Уникальный идентификатор страны гражданства*/
     /*country_id*/
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
     @JoinColumn(name = "country_id")
     private Country country;
 

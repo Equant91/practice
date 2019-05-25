@@ -10,10 +10,11 @@ import javax.validation.constraints.NotNull;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class OrgRequest {
+public class OrgDTORequestForList {
 
 
     /* Название организации*/
+    @NotNull
     private String name;
 
 

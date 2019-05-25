@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,31 +19,30 @@ import javax.persistence.Version;
 import java.util.Set;
 
 @NoArgsConstructor
-@EqualsAndHashCode(exclude = "users")
-@Data
+@EqualsAndHashCode(exclude = "documents")
 @Entity
-@Table(name = "country")
-public class Country {
+@Data
+@Table(name = "document_type")
+public class DocumentType {
 
     /*Уникальный идентификатор*/
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "country_seq")
-    @SequenceGenerator(name = "country_seq", sequenceName = "country_seq",allocationSize = 0)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "document_type_seq")
+    @SequenceGenerator(name = "document_type_seq", sequenceName = "document_type_seq",allocationSize = 0)
     private Long id;
 
     /*Служебное поле hibernate*/
     @Version
-    private long version;
+    private Long version;
 
-    /*Номер страны*/
-    @Column(name = "citizenship_code")
-    private String citizenshipCode;
+    /*Код документа*/
+    @Column(name = "doc_code")
+    private Long docCode;
 
-    /*Название страны*/
-    @Column(name = "citizenship_name" )
-    private String citizenshipName;
+    /*Название документа*/
+    @Column(name = "doc_name")
+    private String docName;
 
-    @OneToMany(mappedBy = "country")
-    private Set<User> users;
-
+    @OneToMany(mappedBy = "documentType", cascade = CascadeType.ALL)
+    private Set<Document> documents;
 }

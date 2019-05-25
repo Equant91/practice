@@ -2,11 +2,10 @@ package com.equant.practice.controller;
 
 import com.equant.practice.PracticeApplication;
 import com.equant.practice.ResponseView;
-import com.equant.practice.dto.organization.OrgRequest;
+import com.equant.practice.dto.organization.OrgDTORequestForList;
 import com.equant.practice.dto.organization.OrganizationDTOForAdd;
 import com.equant.practice.dto.organization.OrganizationDTOForGetAndUpdate;
-import com.equant.practice.dto.organization.OrganizationDTOForList;
-import com.equant.practice.model.Organization;
+import com.equant.practice.dto.organization.OrganizationDTOResponseForList;
 
 
 import lombok.AllArgsConstructor;
@@ -66,13 +65,13 @@ public class OrganizationControllerTestInt {
 
 
 
-    private OrgRequest getOrgRequest(){
-        OrgRequest orgRequest = new OrgRequest();
-        orgRequest.setName("Гармония"); //обязательный параметр
-        orgRequest.setInn("3903243212");
-        orgRequest.setIsActive(Boolean.TRUE);
+    private OrgDTORequestForList getOrgRequest(){
+        OrgDTORequestForList orgDTORequestForList = new OrgDTORequestForList();
+        orgDTORequestForList.setName("Гармония"); //обязательный параметр
+        orgDTORequestForList.setInn("3903243212");
+        orgDTORequestForList.setIsActive(Boolean.TRUE);
 
-        return orgRequest;
+        return orgDTORequestForList;
     }
     private Wrapper getWrapperOrganizationForGet() {
         OrganizationDTOForGetAndUpdate organization = new OrganizationDTOForGetAndUpdate();
@@ -110,11 +109,11 @@ public class OrganizationControllerTestInt {
         return organization;
     }
     private WrapperOrgDTO getWrapperOrganizationForGetByName (){
-        OrganizationDTOForList organizationDTO = new OrganizationDTOForList();
+        OrganizationDTOResponseForList organizationDTO = new OrganizationDTOResponseForList();
         organizationDTO.setId(1L);
         organizationDTO.setName("Гармония");
         organizationDTO.setIsActive(true);
-        List<OrganizationDTOForList>  organizationDTOs= new ArrayList<>();
+        List<OrganizationDTOResponseForList>  organizationDTOs= new ArrayList<>();
         organizationDTOs.add(organizationDTO);
         return new WrapperOrgDTO(organizationDTOs);
     }
@@ -133,7 +132,7 @@ public class OrganizationControllerTestInt {
     @NoArgsConstructor
     @AllArgsConstructor
     private static class WrapperOrgDTO {
-        List<OrganizationDTOForList> data;
+        List<OrganizationDTOResponseForList> data;
 
     }
 

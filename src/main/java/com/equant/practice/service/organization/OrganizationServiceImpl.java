@@ -2,10 +2,10 @@ package com.equant.practice.service.organization;
 
 import com.equant.practice.ResponseView;
 import com.equant.practice.dao.organization.OrganizationDao;
-import com.equant.practice.dto.organization.OrgRequest;
+import com.equant.practice.dto.organization.OrgDTORequestForList;
 import com.equant.practice.dto.organization.OrganizationDTOForAdd;
 import com.equant.practice.dto.organization.OrganizationDTOForGetAndUpdate;
-import com.equant.practice.dto.organization.OrganizationDTOForList;
+import com.equant.practice.dto.organization.OrganizationDTOResponseForList;
 import com.equant.practice.mapper.MapperFacade;
 import com.equant.practice.model.Organization;
 import lombok.NoArgsConstructor;
@@ -40,9 +40,9 @@ public class OrganizationServiceImpl implements OrganizationService {
 
     @Transactional
     @Override
-    public List<OrganizationDTOForList> findByName(OrgRequest orgRequest) {
+    public List<OrganizationDTOResponseForList> findByName(OrgDTORequestForList orgDTORequestForList) {
 
-        return mapperFacade.mapAsList(organizationDao.findByName(orgRequest), OrganizationDTOForList.class);
+        return mapperFacade.mapAsList(organizationDao.findByName(orgDTORequestForList), OrganizationDTOResponseForList.class);
     }
 
     @Transactional

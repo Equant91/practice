@@ -1,11 +1,8 @@
 package com.equant.practice;
 
-import com.equant.practice.mapper.MapperFacade;
-import com.equant.practice.model.Document;
 import ma.glasnost.orika.MapperFactory;
 import ma.glasnost.orika.impl.DefaultMapperFactory;
 import org.h2.server.web.WebServlet;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;

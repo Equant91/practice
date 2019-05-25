@@ -3,16 +3,28 @@ package com.equant.practice.dto.user;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Null;
 import java.util.Date;
 
 @Data
 @NoArgsConstructor
-public class UserDTOForGet {
+public class UserDTOLong {
+interface MyValidate {}
+public interface MyValidateForAdd extends MyValidate {}
+public interface MyValidateForUpdate extends MyValidate {}
 
     /*Уникальный идентификатор*/
+@NotNull(groups = MyValidateForUpdate.class )
+@Null(groups = MyValidateForAdd.class)
     private Long id;
 
+@NotNull(groups = MyValidateForAdd.class)
+    private Long officeId;
+
+
     /* Имя*/
+    @NotNull(groups = MyValidate.class)
     private String firstName;
 
     /*Фамилия*/
@@ -22,15 +34,16 @@ public class UserDTOForGet {
     private String middleName;
 
     /* Должность*/
+    @NotNull(groups = MyValidate.class)
     private String position;
 
     /* Телефон*/
     private String phone;
 
 
-    /*certain_doc_id*/
+    /*document_id*/
 
-        /*id_handbook_doc*/
+        /*document_type*/
 
     /*Название документа*/
     private String docName;
@@ -49,7 +62,7 @@ public class UserDTOForGet {
     /*country_id*/
 
     /*Код страны*/
-    private Integer citizenshipCode;
+    private String citizenshipCode;
 
     /*Название страны*/
     private String citizenshipName;
